@@ -21,7 +21,7 @@ public class JwtTokenUtil {
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + jwtConfig.getExpirationTime()))
-                .signWith(SignatureAlgorithm.HS512, jwtConfig.getSecret().getBytes())  // Actualización: .getBytes()
+                .signWith(SignatureAlgorithm.HS512, jwtConfig.getSecret().getBytes())
                 .compact();
     }
 
@@ -44,9 +44,9 @@ public class JwtTokenUtil {
     }
 
     private Claims getAllClaimsFromToken(String token) {
-        return Jwts.parserBuilder()  // Actualización: parserBuilder()
-                .setSigningKey(jwtConfig.getSecret().getBytes())  // Actualización: .getBytes()
-                .build()  // Actualización: build()
+        return Jwts.parserBuilder()
+                .setSigningKey(jwtConfig.getSecret().getBytes())
+                .build()
                 .parseClaimsJws(token)
                 .getBody();
     }
